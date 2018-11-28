@@ -10,8 +10,12 @@ docker build https://github.com/wesselbosman/TextLoggingService.git -t textlogge
 ```
 docker run -d -v logs:/tmp/ -p 80:80 --name textlogger textlogger
 ```
-
-You can test a running version here (don't enter personal data pls, also I didn't bother with letsencrypt so http only)
+if you feeling like a docker swarm cluster you can do below instead and get 10 replicas
+```
+docker swarm init
+docker service create --name textlogger --replicas 10 -p 80:80 --mount source=logs,destination=/tmp/ textlogger
+```
+You can test a running version here (don't enter personally identifiable data pls, I don't want to get GDPR'd...also I didn't bother with letsencrypt so http only)
 
 GET => http://wessel.drinkstoomuch.coffee/api/logging/read
 
