@@ -14,7 +14,7 @@ namespace TextLoggingService.Core.Logging
 
         public async Task AppendLogMessage(LogModel logModel)
         {
-            await _logStorageProvider.Write();
+            await _logStorageProvider.Write(logModel.Id, logModel.Date, logModel.Message);
         }
     }
 }

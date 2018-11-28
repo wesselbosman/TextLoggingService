@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextLoggingService.IntegrationTests", "TextLoggingService.IntegrationTests\TextLoggingService.IntegrationTests.csproj", "{3872C78A-A3AF-4CD4-9D37-EB2BCC83EE12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextLoggingService.Core.IntegrationTests", "TextLoggingService.Core.IntegrationTests\TextLoggingService.Core.IntegrationTests.csproj", "{1832EE96-16FB-439C-9694-F18438F71A9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{3872C78A-A3AF-4CD4-9D37-EB2BCC83EE12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3872C78A-A3AF-4CD4-9D37-EB2BCC83EE12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3872C78A-A3AF-4CD4-9D37-EB2BCC83EE12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1832EE96-16FB-439C-9694-F18438F71A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1832EE96-16FB-439C-9694-F18438F71A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1832EE96-16FB-439C-9694-F18438F71A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1832EE96-16FB-439C-9694-F18438F71A9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{BF7AC0DF-9D08-4385-A74D-4D8DC3F1EC48} = {2735AC3E-31BF-4128-8A67-F186857ED6BF}
 		{F0C1747B-4144-4E5E-8DFB-BED5F27705D9} = {2735AC3E-31BF-4128-8A67-F186857ED6BF}
 		{3872C78A-A3AF-4CD4-9D37-EB2BCC83EE12} = {BF7AC0DF-9D08-4385-A74D-4D8DC3F1EC48}
+		{1832EE96-16FB-439C-9694-F18438F71A9E} = {BF7AC0DF-9D08-4385-A74D-4D8DC3F1EC48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC691769-B797-4FD5-B9CA-0489A8C8377F}

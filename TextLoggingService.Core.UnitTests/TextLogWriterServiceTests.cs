@@ -28,7 +28,7 @@ namespace TextLoggingService.Core.UnitTests
             await textLogWriterService.AppendLogMessage(logModel);
 
             // Assert
-            _logStorageProvider.Received().Write();
+            await _logStorageProvider.Received().Write(Arg.Any<long>(), Arg.Any<DateTime>(), Arg.Any<string>());
         }
     }
 }
