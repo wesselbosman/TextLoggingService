@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using TextLoggingService.Core.Logging;
 
 namespace TextLoggingService.Controllers
@@ -21,6 +17,11 @@ namespace TextLoggingService.Controllers
             _logReaderService = logReaderService;
         }
 
+        /// <summary>
+        /// Writes a log message to the storage provider
+        /// </summary>
+        /// <param name="logModel"></param>
+        /// <returns>Returns accepted if the message was received and bad request status if validation fials</returns>
         [Route("write"), HttpPost]
         public async Task<IActionResult> Write([FromBody] LogModel logModel)
         {
@@ -33,6 +34,10 @@ namespace TextLoggingService.Controllers
             return Accepted();
         }
 
+        /// <summary>
+        /// Returns the entire log as text
+        /// </summary>
+        /// <returns>OK status with the entire log text as content</returns>
         [Route("read"), HttpGet]
         public async Task<IActionResult> Read()
         {
