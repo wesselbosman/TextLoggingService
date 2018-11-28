@@ -6,6 +6,7 @@ EXPOSE 443
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
 COPY ["TextLoggingService/TextLoggingService.csproj", "TextLoggingService/"]
+COPY ["TextLoggingService.Core/TextLoggingService.Core.csproj", "TextLoggingService.Core/"]
 RUN dotnet restore "TextLoggingService/TextLoggingService.csproj"
 COPY . .
 WORKDIR "/src/TextLoggingService"
