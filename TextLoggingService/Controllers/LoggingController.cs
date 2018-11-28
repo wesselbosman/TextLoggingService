@@ -24,6 +24,11 @@ namespace TextLoggingService.Controllers
         [Route("write"), HttpPost]
         public async Task<IActionResult> Write([FromBody] LogModel logModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
             await _logWriterService.AppendLogMessage(logModel);
             return Accepted();
         }

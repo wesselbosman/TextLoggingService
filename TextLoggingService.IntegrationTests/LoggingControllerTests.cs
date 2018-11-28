@@ -34,6 +34,22 @@ namespace TextLoggingService.IntegrationTests
         }
 
         [Fact]
+        public async Task Post_Write_GivenLogMessageOver255characters_ShouldReturnBadRequestResponse()
+        {
+            const string logMessageJson = "{\r\n\t\"id\": 0,\r\n\t\"date\": \"01/11/1990\"," +
+                                          "\r\n\t\"message\": \"Doth God exact day labour, light denied? lorem ipsum sit dolor amet some more latin blah blah fishpaste. " +
+                                          "Doth God exact day labour, light denied? lorem ipsum sit dolor amet some more latin blah blah fishpaste. " +
+                                          "Doth God exact day labour, light denied? lorem ipsum sit dolor amet some more latin blah blah fishpaste.\"\r\n}";
+            var httpClient = _testServer.CreateClient();
+            var httpResponseMessage = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Post, "/api/logging/write")
+            {
+                Content = new StringContent(logMessageJson, Encoding.UTF8, "application/json")
+            });
+
+            httpResponseMessage.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
+        }
+
+        [Fact]
         public async Task Get_Read_ShouldReturnOkResponseWithLog()
         {
             var httpClient = _testServer.CreateClient();

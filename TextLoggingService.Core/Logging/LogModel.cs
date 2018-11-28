@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TextLoggingService.Core.Logging
 {
@@ -6,6 +7,8 @@ namespace TextLoggingService.Core.Logging
     {
         public long Id { get; }
         public DateTime Date { get; }
+
+        [MaxLength(255)]
         public string Message { get; }
 
         public LogModel(long id, DateTime date, string message)
