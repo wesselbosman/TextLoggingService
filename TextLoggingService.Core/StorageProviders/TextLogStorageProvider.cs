@@ -7,27 +7,22 @@ namespace TextLoggingService.Core.StorageProviders
     public class TextLogStorageProvider : ILogStorageProvider
     {
         // This works if this class is registered in the IoC container as a singleton
-        private string _tempLogPath = string.Empty;
+        private static readonly string _tempLogPath = Path.Combine(Path.GetTempPath(), $"textapp-{DateTime.Now:yy-MM-dd}.log");
 
         public async Task Write(long id, DateTime date, string message)
         {
-            var tempFileName = GetLogFileName();
-            var fileStream = File.OpenWrite(tempFileName);
-
-            using (fileStream)
+            using (var fileStream = new FileStream(_tempLogPath, FileMode.Append))
+            using (var streamWriter = new StreamWriter(fileStream))
             {
-                var streamWriter = new StreamWriter(fileStream) {NewLine = Environment.NewLine};
-                using (streamWriter)
-                {
-                    await streamWriter.WriteAsync($"{date}|{id}=>{message}");
-                }
+                await streamWriter.WriteAsync($"{date} | {id} | => {message}{Environment.NewLine}");
             }
         }
 
         public async Task<string> Read()
         {
-            var tempFileName = GetLogFileName();
-            var fileStream = File.OpenRead(tempFileName);
+            var fileStream = File.Exists(_tempLogPath) 
+                ? File.OpenRead(_tempLogPath) 
+                : (Stream) new MemoryStream(new byte[0]);
 
             using (fileStream)
             {
@@ -37,15 +32,6 @@ namespace TextLoggingService.Core.StorageProviders
                    return await streamReader.ReadToEndAsync();
                 }
             }
-        }
-
-        private string GetLogFileName()
-        {
-            // Using tempfiles to avoid linux\windows filepath issues when deploying with Container engine, ideally would be set with config
-            // with a max filesize and naming conventions. I think that would out of the scope for this exercise.
-            var tempFileName = string.IsNullOrWhiteSpace(_tempLogPath) ? Path.GetTempFileName() : _tempLogPath;
-            _tempLogPath = tempFileName;
-            return tempFileName;
         }
     }
 }
