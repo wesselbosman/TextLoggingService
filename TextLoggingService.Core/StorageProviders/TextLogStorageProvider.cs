@@ -20,14 +20,9 @@ namespace TextLoggingService.Core.StorageProviders
 
         public async Task<string> Read()
         {
-            var fileStream = File.Exists(_tempLogPath) 
-                ? File.OpenRead(_tempLogPath) 
-                : (Stream) new MemoryStream(new byte[0]);
-
-            using (fileStream)
+            using (var fileStream = File.Exists(_tempLogPath) ? File.OpenRead(_tempLogPath) : (Stream) new MemoryStream(new byte[0]))
             {
-                var streamReader = new StreamReader(fileStream);
-                using (streamReader)
+                using (var streamReader = new StreamReader(fileStream))
                 {
                    return await streamReader.ReadToEndAsync();
                 }
