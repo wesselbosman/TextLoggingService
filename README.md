@@ -26,15 +26,22 @@ Example JSON
 {
   "id": 0,
   "date": "01/11/2011",
-  "message": "numberwang!"
+  "message": "Hello World!"
 }
 ```
 
-Example curl request
+Example curl request - Bash
 ```
 curl --header "Content-Type: application/json" \
   --request POST \
-  --data '{"id": 0,"date": "01-11-2011","message": "Sup James!"}' \
+  --data '{"id": 0,"date": "01-11-2011","message": "Hello World!"}' \
+  http://wessel.drinkstoomuch.coffee/api/logging/write
+```
+Example curl request - CMD/Powershell
+```
+curl --header "Content-Type: application/json" `
+  --request POST `
+  --data '{"id": 0,"date": "01-11-2011","message": "Hello World!"}' `
   http://wessel.drinkstoomuch.coffee/api/logging/write
 ```
 
